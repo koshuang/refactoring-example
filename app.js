@@ -1,50 +1,31 @@
 var input = '2016/01/02 11:33:20';
 
 function formatDate(format, input) {
+  var obj = getDateFomatMapping();
+  var keys = Object.keys(obj);
+  var ok = keys.indexOf(format) > -1;
 
-  switch (format) {
-    case 'short-1':
-      result = formatMomentDate(input, 'MM/DD/YYYY');
-      break;
-    case 'short-2':
-      result = formatMomentDate(input, 'MM/DD/YY');
-      break;
-    case 'short-3':
-      result = formatMomentDate(input, 'MMMM DD, YYYY');
-      break;
-    case 'short-4':
-      result = formatMomentDate(input, 'MMM. Do YYYY');
-      break;
-    case 'short-day':
-      result = formatMomentDate(input, 'dddd');
-      break;
-    case 'long-1':
-      result = formatMomentDate(input, 'dddd, MMM. Do YYYY, h:mm a');
-      break;
-    case 'long-2':
-      result = formatMomentDate(input, 'MM/DD/YY, h:mm a');
-      break;
-    case 'long-3':
-      result = formatMomentDate(input, 'MMMM DD YYYY,  h:mm a');
-      break;
-    case 'long-4':
-      result = formatMomentDate(input, 'MM/DD/YYYY,  hh:mm');
-      break;
-    case 'referenceTime':
-      result = moment(input).calendar();
-      break;
-    case 'durationSec':
-      result = moment.duration(input, 'seconds').humanize();
-      break;
-    default:
-      break;
+  if (ok) {
+    var dateFomat = obj[format];
+    result = formatMomentDate(input, dateFomat);
+  } else {
+    switch (format) {
+      case 'referenceTime':
+        result = moment(input).calendar();
+        break;
+      case 'durationSec':
+        result = moment.duration(input, 'seconds').humanize();
+        break;
+      default:
+        break;
+    }
   }
 
   return result;
+}
 
-  function formatMomentDate(input, dateFomat) {
-    return moment(input).format(dateFomat);
-  }
+function formatMomentDate(input, dateFomat) {
+  return moment(input).format(dateFomat);
 }
 
 run(getRecords());
@@ -74,6 +55,22 @@ function getRecords() {
   ];
 
   return records;
+}
+
+function getDateFomatMapping() {
+  var obj = {
+    'short-1': 'MM/DD/YYYY',
+    'short-2': 'MM/DD/YY',
+    'short-3': 'MMMM DD, YYYY',
+    'short-4': 'MMM. Do YYYY',
+    'short-day': 'dddd',
+    'long-1': 'dddd, MMM. Do YYYY, h:mm a',
+    'long-2': 'MM/DD/YY, h:mm a',
+    'long-3': 'MMMM DD YYYY,  h:mm a',
+    'long-4': 'MM/DD/YYYY,  hh:mm',
+  };
+
+  return obj;
 }
 
 function assertEqual(result, expectation, msg) {
