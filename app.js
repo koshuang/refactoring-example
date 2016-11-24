@@ -11,21 +11,21 @@ var records = [
   },
   {
     format: 'short-3',
-    expectation: 'January 02, 2016',
+    expectation: 'January 02, 206',
   },
 ];
 
 // records.forEach(function({ format, expectation }) { // => destrcuting
 records.forEach(function(record) { // => destrcuting
   var result = formatDate(record.format, input);
-  testFormatDate(result, record.expectation);
+  assertEqual(result, record.expectation, result + ' should be equal to ' + record.expectation);
 });
 
-function testFormatDate(result, expectation) {
+function assertEqual(result, expectation, msg) {
   if (result === expectation) {
     console.log('Y');
   } else {
-    console.log('N');
+    console.error('N', msg);
   }
 }
 
