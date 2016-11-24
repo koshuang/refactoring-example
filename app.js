@@ -2,7 +2,12 @@ var format = 'short-1';
 var input = '2016/01/02 11:33:20';
 var result = formatDate(format, input);
 
-console.log(result);
+var a = '01/02/2016';
+if (result === a) {
+  console.log('Y');
+} else {
+  console.log('N');
+}
 
 function formatDate(format, input) {
   switch (format) {
