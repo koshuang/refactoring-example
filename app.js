@@ -1,33 +1,34 @@
 var input = '2016/01/02 11:33:20';
 
 function formatDate(format, input) {
+
   switch (format) {
     case 'short-1':
-      result = moment(input).format('MM/DD/YYYY');
+      result = formatMomentDate(input, 'MM/DD/YYYY');
       break;
     case 'short-2':
-      result = moment(input).format('MM/DD/YY');
+      result = formatMomentDate(input, 'MM/DD/YY');
       break;
     case 'short-3':
-      result = moment(input).format('MMMM DD, YYYY');
+      result = formatMomentDate(input, 'MMMM DD, YYYY');
       break;
     case 'short-4':
-      result = moment(input).format('MMM. Do YYYY');
+      result = formatMomentDate(input, 'MMM. Do YYYY');
       break;
     case 'short-day':
-      result = moment(input).format('dddd');
+      result = formatMomentDate(input, 'dddd');
       break;
     case 'long-1':
-      result = moment(input).format('dddd, MMM. Do YYYY, h:mm a');
+      result = formatMomentDate(input, 'dddd, MMM. Do YYYY, h:mm a');
       break;
     case 'long-2':
-      result = moment(input).format('MM/DD/YY, h:mm a');
+      result = formatMomentDate(input, 'MM/DD/YY, h:mm a');
       break;
     case 'long-3':
-      result = moment(input).format('MMMM DD YYYY,  h:mm a');
+      result = formatMomentDate(input, 'MMMM DD YYYY,  h:mm a');
       break;
     case 'long-4':
-      result = moment(input).format('MM/DD/YYYY,  hh:mm');
+      result = formatMomentDate(input, 'MM/DD/YYYY,  hh:mm');
       break;
     case 'referenceTime':
       result = moment(input).calendar();
@@ -40,6 +41,10 @@ function formatDate(format, input) {
   }
 
   return result;
+
+  function formatMomentDate(input, dateFomat) {
+    return moment(input).format(dateFomat);
+  }
 }
 
 run(getRecords());
