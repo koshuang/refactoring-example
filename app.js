@@ -2,11 +2,16 @@ var format = 'short-1';
 var input = '2016/01/02 11:33:20';
 var result = formatDate(format, input);
 
-var a = '01/02/2016';
-if (result === a) {
-  console.log('Y');
-} else {
-  console.log('N');
+var expectation = '01/02/2016';
+
+testFormatDate(result, expectation);
+
+function testFormatDate(result, expectation) {
+  if (result === expectation) {
+    console.log('Y');
+  } else {
+    console.log('N');
+  }
 }
 
 function formatDate(format, input) {
