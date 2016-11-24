@@ -1,34 +1,5 @@
 var input = '2016/01/02 11:33:20';
 
-var records = [
-  {
-    format: 'short-1',
-    expectation: '01/02/2016',
-  },
-  {
-    format: 'short-2',
-    expectation: '01/02/16',
-  },
-  {
-    format: 'short-3',
-    expectation: 'January 02, 206',
-  },
-];
-
-// records.forEach(function({ format, expectation }) { // => destrcuting
-records.forEach(function(record) { // => destrcuting
-  var result = formatDate(record.format, input);
-  assertEqual(result, record.expectation, result + ' should be equal to ' + record.expectation);
-});
-
-function assertEqual(result, expectation, msg) {
-  if (result === expectation) {
-    console.log('Y');
-  } else {
-    console.error('N', msg);
-  }
-}
-
 function formatDate(format, input) {
   switch (format) {
     case 'short-1':
@@ -69,4 +40,41 @@ function formatDate(format, input) {
   }
 
   return result;
+}
+
+run(getRecords());
+
+function run(records) {
+  // records.forEach(function({ format, expectation }) { // => destrcuting
+  records.forEach(function(record) { // => destrcuting
+    var result = formatDate(record.format, input);
+    assertEqual(result, record.expectation, result + ' should be equal to ' + record.expectation);
+  });
+}
+
+function getRecords() {
+  var records = [
+    {
+      format: 'short-1',
+      expectation: '01/02/2016',
+    },
+    {
+      format: 'short-2',
+      expectation: '01/02/16',
+    },
+    {
+      format: 'short-3',
+      expectation: 'January 02, 2016',
+    },
+  ];
+
+  return records;
+}
+
+function assertEqual(result, expectation, msg) {
+  if (result === expectation) {
+    console.log('Y');
+  } else {
+    console.error('N', msg);
+  }
 }
