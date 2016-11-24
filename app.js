@@ -7,21 +7,17 @@ function formatDate(format, input) {
 
   if (ok) {
     var dateFomat = obj[format];
-    result = formatMomentDate(input, dateFomat);
-  } else {
-    switch (format) {
-      case 'referenceTime':
-        result = moment(input).calendar();
-        break;
-      case 'durationSec':
-        result = moment.duration(input, 'seconds').humanize();
-        break;
-      default:
-        break;
-    }
+    return formatMomentDate(input, dateFomat);
   }
 
-  return result;
+  switch (format) {
+    case 'referenceTime':
+      return moment(input).calendar();
+    case 'durationSec':
+      return moment.duration(input, 'seconds').humanize();
+    default:
+      return input;
+  }
 }
 
 function formatMomentDate(input, dateFomat) {
