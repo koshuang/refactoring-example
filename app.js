@@ -1,10 +1,15 @@
-var format = 'short-1';
+var format1 = 'short-1';
+var format2 = 'short-2';
 var input = '2016/01/02 11:33:20';
-var result = formatDate(format, input);
 
-var expectation = '01/02/2016';
+var result1 = formatDate(format1, input);
+var result2 = formatDate(format2, input);
 
-testFormatDate(result, expectation);
+var expectation1 = '01/02/2016';
+var expectation2 = '01/02/16';
+
+testFormatDate(result1, expectation1);
+testFormatDate(result2, expectation2);
 
 function testFormatDate(result, expectation) {
   if (result === expectation) {
