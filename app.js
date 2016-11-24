@@ -1,17 +1,20 @@
-var formats = [
-  'short-1',
-  'short-2',
-];
 var input = '2016/01/02 11:33:20';
 
-var expectations = [
-  '01/02/2016',
-  '01/02/16',
+var records = [
+  {
+    format: 'short-1',
+    expectation: '01/02/2016',
+  },
+  {
+    format: 'short-2',
+    expectation: '01/02/16',
+  },
 ];
 
-formats.forEach(function(format, index) {
-  var result = formatDate(format, input);
-  testFormatDate(result, expectations[index]);
+// records.forEach(function({ format, expectation }) { // => destrcuting
+records.forEach(function(record) { // => destrcuting
+  var result = formatDate(record.format, input);
+  testFormatDate(result, record.expectation);
 });
 
 function testFormatDate(result, expectation) {
