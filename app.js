@@ -9,6 +9,10 @@ var records = [
     format: 'short-2',
     expectation: '01/02/16',
   },
+  {
+    format: 'short-3',
+    expectation: 'January 02, 2016',
+  },
 ];
 
 // records.forEach(function({ format, expectation }) { // => destrcuting
