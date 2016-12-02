@@ -3,9 +3,8 @@ var moment = require('moment');
 function formatDate(format, input) {
   var obj = getDateFomatMapping();
   var keys = Object.keys(obj);
-  var ok = keys.indexOf(format) > -1;
 
-  if (ok) {
+  if (keys.indexOf(format) > -1) {
     var dateFomat = obj[format];
     return formatMomentDate(input, dateFomat);
   }
