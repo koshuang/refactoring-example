@@ -1,4 +1,4 @@
-var input = '2016/01/02 11:33:20';
+var moment = require('moment');
 
 function formatDate(format, input) {
   var obj = getDateFomatMapping();
@@ -22,16 +22,6 @@ function formatDate(format, input) {
 
 function formatMomentDate(input, dateFomat) {
   return moment(input).format(dateFomat);
-}
-
-run(getRecords());
-
-function run(records) {
-  // records.forEach(function({ format, expectation }) { // => destrcuting
-  records.forEach(function(record) { // => destrcuting
-    var result = formatDate(record.format, input);
-    assertEqual(result, record.expectation, result + ' should be equal to ' + record.expectation);
-  });
 }
 
 function getRecords() {
@@ -69,10 +59,5 @@ function getDateFomatMapping() {
   return obj;
 }
 
-function assertEqual(result, expectation, msg) {
-  if (result === expectation) {
-    console.log('Y');
-  } else {
-    console.error('N', msg);
-  }
-}
+exports.formatDate = formatDate;
+exports.getRecords = getRecords;

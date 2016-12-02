@@ -2,7 +2,9 @@
   "undef": true,
   "unused": true,
   "predef": [
-    "require"
+    "require",
+    "console",
+    "exports"
   ],
   "mocha": true
 }
