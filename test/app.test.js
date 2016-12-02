@@ -1,10 +1,10 @@
 var assert = require('assert');
 var app = require('../app.js');
 
-var formatDate = app.formatDate;
-
 describe('app.js', function() {
   describe('#formatDate()', function() {
+    var formatDate = app.formatDate;
+
     var records = [
       {
         format: 'short-1',
