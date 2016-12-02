@@ -24,25 +24,6 @@ function formatMomentDate(input, dateFomat) {
   return moment(input).format(dateFomat);
 }
 
-function getRecords() {
-  var records = [
-    {
-      format: 'short-1',
-      expectation: '01/02/2016',
-    },
-    {
-      format: 'short-2',
-      expectation: '01/02/16',
-    },
-    {
-      format: 'short-3',
-      expectation: 'January 02, 2016',
-    },
-  ];
-
-  return records;
-}
-
 function getDateFomatMapping() {
   var obj = {
     'short-1': 'MM/DD/YYYY',
@@ -60,4 +41,3 @@ function getDateFomatMapping() {
 }
 
 exports.formatDate = formatDate;
-exports.getRecords = getRecords;
