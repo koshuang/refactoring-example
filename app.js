@@ -4,14 +4,14 @@ function formatDate(input, type) {
   var mapping = getDateFomatMapping();
   var keys = Object.keys(mapping);
 
-  if (keys.indexOf(type) > -1) {
-    var obj = mapping[type];
-    var dateFormat = obj.dateFormat;
-    var action = obj.action;
-    return action(input, dateFormat);
+  if (keys.indexOf(type) === -1) {
+    throw new Error('Unknown format type', type);
   }
 
-  return input;
+  var obj = mapping[type];
+  var dateFormat = obj.dateFormat;
+  var action = obj.action;
+  return action(input, dateFormat);
 }
 
 function formatMomentDate(input, dateFormat) {
