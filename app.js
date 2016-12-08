@@ -1,15 +1,15 @@
 var moment = require('moment');
 
-function formatDate(format, input) {
-  var obj = getDateFomatMapping();
-  var keys = Object.keys(obj);
+function formatDate(input, type) {
+  var mapping = getDateFomatMapping();
+  var keys = Object.keys(mapping);
 
-  if (keys.indexOf(format) > -1) {
-    var dateFomat = obj[format];
-    return formatMomentDate(input, dateFomat);
+  if (keys.indexOf(type) > -1) {
+    var dateFormat = mapping[type].dateFormat;
+    return formatMomentDate(input, dateFormat);
   }
 
-  switch (format) {
+  switch (type) {
     case 'referenceTime':
       return moment(input).calendar();
     case 'durationSec':
@@ -19,21 +19,21 @@ function formatDate(format, input) {
   }
 }
 
-function formatMomentDate(input, dateFomat) {
-  return moment(input).format(dateFomat);
+function formatMomentDate(input, dateFormat) {
+  return moment(input).format(dateFormat);
 }
 
 function getDateFomatMapping() {
   var obj = {
-    'short-1': 'MM/DD/YYYY',
-    'short-2': 'MM/DD/YY',
-    'short-3': 'MMMM DD, YYYY',
-    'short-4': 'MMM. Do YYYY',
-    'short-day': 'dddd',
-    'long-1': 'dddd, MMM. Do YYYY, h:mm a',
-    'long-2': 'MM/DD/YY, h:mm a',
-    'long-3': 'MMMM DD YYYY,  h:mm a',
-    'long-4': 'MM/DD/YYYY,  hh:mm',
+    'short-1': { dateFormat: 'MM/DD/YYYY' },
+    'short-2': { dateFormat: 'MM/DD/YY' },
+    'short-3': { dateFormat: 'MMMM DD, YYYY' },
+    'short-4': { dateFormat: 'MMM. Do YYYY' },
+    'short-day': { dateFormat: 'dddd' },
+    'long-1': { dateFormat: 'dddd, MMM. Do YYYY, h:mm a' },
+    'long-2': { dateFormat: 'MM/DD/YY, h:mm a' },
+    'long-3': { dateFormat: 'MMMM DD YYYY,  h:mm a' },
+    'long-4': { dateFormat: 'MM/DD/YYYY,  hh:mm' },
   };
 
   return obj;
