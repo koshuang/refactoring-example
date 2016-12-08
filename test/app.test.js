@@ -1,6 +1,6 @@
 var assert = require('assert');
 var app = require('../app.js');
-var records = require('./data/dateFormats/dateFormatMappings.js').records;
+var records = require('./data/dateFormats/dateFormatMappings.js');
 
 describe('app.js', function() {
   describe('#formatDate()', function() {

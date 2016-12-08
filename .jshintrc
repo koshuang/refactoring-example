@@ -4,7 +4,8 @@
   "predef": [
     "require",
     "console",
-    "exports"
+    "exports",
+    "module"
   ],
   "mocha": true
 }

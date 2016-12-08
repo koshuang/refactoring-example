@@ -1,4 +1,4 @@
-var records = [
+module.exports = [
   {
     type: 'short-1',
     expectation: '01/02/2016',
@@ -12,5 +12,3 @@ var records = [
     expectation: 'January 02, 2016',
   },
 ];
-
-exports.records = records;
