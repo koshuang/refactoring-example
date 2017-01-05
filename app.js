@@ -1,16 +1,17 @@
-var moment = require('moment');
+const moment = require('moment');
 
 function formatDate(input, type) {
-  var mapping = getDateFomatMapping();
-  var keys = Object.keys(mapping);
+  const mapping = getDateFomatMapping();
+  const typeNotFound = Object.keys(mapping).indexOf(type) === -1;
 
-  if (keys.indexOf(type) === -1) {
-    throw new Error('Unknown format type', type);
+  if (typeNotFound) {
+    throw new Error(`Unknown format type: ${type}`);
   }
 
-  var obj = mapping[type];
-  var dateFormat = obj.dateFormat;
-  var action = obj.action;
+  const obj = mapping[type];
+  const dateFormat = obj.dateFormat;
+  const action = obj.action;
+
   return action(input, dateFormat);
 }
 

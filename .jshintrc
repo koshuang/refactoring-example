@@ -6,5 +6,6 @@
     "console",
     "exports"
   ],
-  "mocha": true
+  "mocha": true,
+  "esnext": true
 }
