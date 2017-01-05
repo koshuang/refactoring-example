@@ -1,10 +1,9 @@
 var assert = require('assert');
-var app = require('../app.js');
+var formatDate = require('../formatDate.js');
 var records = require('./data/dateFormats/dateFormatMappings.js').records;
 
-describe('app.js', function() {
+describe('formatDate.js', function() {
   describe('#formatDate()', function() {
-    var formatDate = app.formatDate;
     var input = '2016/01/02 11:33:20';
 
     records.forEach(function(record) { // => destrcuting

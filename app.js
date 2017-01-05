@@ -1,48 +1,19 @@
-const moment = require('moment');
+var express = require('express');
+var app = express();
+var formatDate = require('./formatDate');
 
-function formatDate(input, type) {
-  const mapping = getDateFomatMapping();
-  const typeNotFound = Object.keys(mapping).indexOf(type) === -1;
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
-  if (typeNotFound) {
-    throw new Error(`Unknown format type: ${type}`);
-  }
+app.get('/format-date', function (req, res) {
+  var input = '2016/01/02 11:33:20';
+  var type = 'short-1';
+  var result = formatDate(input, type);
 
-  const obj = mapping[type];
-  const dateFormat = obj.dateFormat;
-  const action = obj.action;
+  res.send(result);
+});
 
-  return action(input, dateFormat);
-}
-
-function formatMomentDate(input, dateFormat) {
-  return moment(input).format(dateFormat);
-}
-
-function formatMomentCalendar(input) {
-  return moment(input).calendar();
-}
-
-function formatMomentDuration(input) {
-  return moment.duration(input, 'seconds').humanize();
-}
-
-function getDateFomatMapping() {
-  var obj = {
-    'short-1':       { dateFormat: 'MM/DD/YYYY',                 action: formatMomentDate },
-    'short-2':       { dateFormat: 'MM/DD/YY',                   action: formatMomentDate },
-    'short-3':       { dateFormat: 'MMMM DD, YYYY',              action: formatMomentDate },
-    'short-4':       { dateFormat: 'MMM. Do YYYY',               action: formatMomentDate },
-    'short-day':     { dateFormat: 'dddd',                       action: formatMomentDate },
-    'long-1':        { dateFormat: 'dddd, MMM. Do YYYY, h:mm a', action: formatMomentDate },
-    'long-2':        { dateFormat: 'MM/DD/YY, h:mm a',           action: formatMomentDate },
-    'long-3':        { dateFormat: 'MMMM DD YYYY,  h:mm a',      action: formatMomentDate },
-    'long-4':        { dateFormat: 'MM/DD/YYYY,  hh:mm',         action: formatMomentDate },
-    'referenceTime': { dateFormat: null,                         action: formatMomentCalendar },
-    'durationSec':   { dateFormat: null,                         action: formatMomentDuration },
-  };
-
-  return obj;
-}
-
-exports.formatDate = formatDate;
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
